@@ -1,8 +1,9 @@
 #DAO: Data Access Object
 #libro_dao: Objeto de acceso a datos de la tabla libro
 
+from database import conexion
 from database.conexion import Conexion
-from models.libro import libro
+from models.libro import Libro
 
 class LibroDAO:
 
@@ -17,11 +18,11 @@ class LibroDAO:
         libros = []
         for registro in registros:
             libro = Libro(
-            registro.id,
-            registro.titulo, 
-            registro.autor,
-            registro.isbn,
-            registro.disponible)
+                id=registro[0],
+                titulo=registro[1],
+                autor=registro[2],
+                isbn=registro[3],
+                disponible=registro[4])
             libros.append(libro)
         cursor.close()
         conexion.close()
@@ -72,8 +73,8 @@ class LibroDAO:
         cursor = conexion.cursor()
 
         cursor.execute(
-            "DELETE FROM libro WHERE id= %s", 
-            (libro_id)
+            "DELETE FROM libro WHERE id = %s", 
+            (libro_id,)
             )
         conexion.commit()
         cursor.close()

@@ -1,18 +1,17 @@
-class libro:
+class Libro:
     #Constructor de la clase libro
-    def __init__(self, id_libro,titulo, autor, isbn):
-        self.id_libro = id_libro
+    def __init__(self, id, titulo, autor, isbn, disponible):
+        self.id = id
         self.titulo = titulo
         self.autor = autor
         self.isbn = isbn
-    self.disponible = True #Por defecto, el libro está disponible para préstamo
+        self.disponible = disponible
 
     #Método para prestar el libro
     def prestar(self):
         if self.disponible:
             self.disponible = False
             return True
-        
         return False
     
     #Método para devolver el libro
@@ -20,4 +19,4 @@ class libro:
         self.disponible = True
 
     def mostar_info(self):
-        return f"Libro ID {self.id_libro}, Título: {self.titulo}, Autor: {self.autor}, ISBN: {self.isbn}, Disponible: {'Si' if self.disponible else 'No'}"
+        return f"Libro ID {self.id}, Título: {self.titulo}, Autor: {self.autor}, ISBN: {self.isbn}, Disponible: {'Si' if self.disponible else 'No'}"
