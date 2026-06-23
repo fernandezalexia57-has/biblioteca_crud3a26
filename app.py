@@ -27,13 +27,12 @@ def ver_libros():
 
 def insertar_libro():
     titulo = input("Escribe el titulo del nuevo libro: ")
-    autor = int(input("Escribe el id del autor"))
+    autor = int(input("Escribe el id del autor: "))
     isbn = input("Escribe el isbn del nuevo libro: ")
     disponible = True
     try:
         libro_dao = LibroDAO()
         id = libro_dao.obtener_ultimo_id() + 1
-        print(f"id: {id}")
         libro = Libro(id, titulo, autor, isbn, disponible)
         libro_dao.insertar(libro)
         print("Insercion realizada correctamente.")
