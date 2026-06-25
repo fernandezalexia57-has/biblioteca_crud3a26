@@ -1,3 +1,5 @@
+from configparser import Error
+
 from dao.libro_dao import LibroDAO
 from models.libro import Libro
 
@@ -39,6 +41,23 @@ def insertar_libro():
     except Exception as e:
         print("Error al insertar un nuevo libro: ")
         print(e)
+
+def actualizar_libro():
+    print("Selecciona el libro a actualizar")
+    try:
+        libro_dao = LibroDAO()
+        ver_libros()
+        id = int(input("Escribe el id del libro a actualizar: "))
+        titulo = input("Escribe el nuevo titulo del libro: ")
+        autor = input("Escribe el nuevo id del autor: ")
+        isbn = input("Escribe el nuevo isbn del libro: ")
+        disponible = bool(input("Escribe el nuevo valor de disponible: "))
+        libro = Libro(id, titulo, autor, isbn, disponible)
+        libro_dao.actualizar(libro)
+        print(f'El libro con ID {id} ha sido actualizado correctamente')
+    except Exception as e:
+            print("Error al actualizar un libro")
+            print(e)
 
 
 def main():

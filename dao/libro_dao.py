@@ -60,7 +60,7 @@ class LibroDAO:
         WHERE id= %s
         """
         cursor.execute(sql,
-                       (libro.titulo,
+                        (libro.titulo,
                         libro.autor,
                         libro.isbn,
                         libro.disponible,
@@ -69,7 +69,7 @@ class LibroDAO:
         cursor.close()
         conexion.close()
 
-    def eliminar(self, id):
+    def eliminar(self, libro_id):
         conexion = Conexion.obtener_conexion()
         cursor = conexion.cursor()
 
