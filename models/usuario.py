@@ -1,18 +1,20 @@
 class Usuario:
 
-    #Constructor de la clase Usuario
-    def __init__(self, id_usuario, nombre, matricula, email, carrera):
-        self.id_usuario = id_usuario
+    # Constructor
+    def __init__(self, id, nombre, matricula, carrera, correo, activo = True):
+        self.id = id
         self.nombre = nombre
         self.matricula = matricula
-        self.email = email
         self.carrera = carrera
-        self.libros_prestados = [] #Lista para almacenar los libros prestados al usuario
+        self.correo = correo
+        self.activo = activo # Por defecto, el usuario esta activo
 
-    def activar(self):
-        self.activo = True
-    def desactivar(self):
-        self.activo = False            
+        def activar(self):
+            self.activo = True
+            
 
-    def mostrar_info(self):
-        return f"Usuario ID: {self.id_usuario}, Nombre: {self.nombre}, Matricula: {self.matricula}, Email: {self.email}, Carrera: {self.carrera}, Activo: {'Si' if self.activo else 'No'} "
+        def desactivar(self):
+            self.activo = False
+
+        def mostrar_info(self):
+            return f"Usuario ID: {self.id}, Nombre: {self.nombre}, Matricula: {self.matricula}, Carrera: {self.carrera}, Correo: {self.correo}, Activo: {'Si' if self.activo else 'No'}"
