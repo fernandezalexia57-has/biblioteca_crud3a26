@@ -21,6 +21,7 @@ def libro_form():
         color = ft.Colors.GREEN
     )
 
+
     def guardar_libro(e):
         #Recupera los valores de TexField
         titulo = titulo_input.value # nombre_text_field.value
@@ -39,6 +40,7 @@ def libro_form():
             isbn_input.value = ""
 
             e.page.update()    
+
 
     return ft.Container(
         padding = 30,
