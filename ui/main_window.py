@@ -1,5 +1,7 @@
 import flet as ft
 
+from ui.libro_form import libro_form
+
 def main_window(page: ft.Page):
     page.title = "Sistema de Biblioteca Universitaria"
     page.window_width = 1100
@@ -9,28 +11,35 @@ def main_window(page: ft.Page):
 
     #Ejemplo de widget: Text
     titulo = ft.Text(
-        "Sistema de Biblioteca Universitaria", 
-            size = 24, 
-            weight = ft.FontWeight.BOLD)
+    "Sistema de Biblioteca Universitaria",
+    size= 24,
+    weight=ft.FontWeight.BOLD
+    )
 
     subtitulo = ft.Text(
-        "Seleccione una opcion del menu", 
-            size = 16, 
-            color = ft.Colors.BLUE_GREY_600)
+        "Seleccione una opción del menú",
+        size= 16,
+        color = ft.Colors.BLUE_GREY_600
+    )
 
-    #Widget container
+
+    # Widget Container
     contenido = ft.Container(
         content = ft.Column(
             controls= [
-                titulo,
+                titulo, 
                 subtitulo
             ],
-            spacing = 10
-            ),
-            padding = 30,
-            expand = True
-        )
-    
+            spacing= 10
+        ),
+        padding = 30,
+        expand = True
+    )
+    #Reacciona al click del botón de libros en el menú lateral
+    def insertar_libros(e):
+        contenido.content = libro_form()
+        page.update()
+
     menu_lateral = ft.Container(
         width = 220,
         bgcolor = ft.Colors.BLUE_GREY_900,
@@ -38,13 +47,13 @@ def main_window(page: ft.Page):
         content = ft.Column(
             controls = [
                 ft.Text(
-                    "Biblioteca",
+                    "Biblioteca",  
                     size = 22,
                     weight = ft.FontWeight.BOLD,
                     color = ft.Colors.WHITE
                 ),
                 ft.Text(
-                    "Sistema de gestion",
+                    "Sistema de gestión",
                     size = 12,
                     color = ft.Colors.BLUE_GREY_100
                 ),
@@ -53,6 +62,7 @@ def main_window(page: ft.Page):
                     "Libros",
                     icon = ft.Icons.BOOK,
                     width = 180,
+                    on_click = insertar_libros
                 ),
                 ft.ElevatedButton(
                     "Usuarios",
@@ -68,19 +78,19 @@ def main_window(page: ft.Page):
                     "Devoluciones",
                     icon = ft.Icons.KEYBOARD_RETURN,
                     width = 180,
-                ),
+                ),                
             ],
             spacing = 15
         )
-    )
 
-    #Agregar los widgets a la pagina
+     )
+    
     layout = ft.Row(
         controls = [
-            menu_lateral,
+            menu_lateral, 
             contenido
         ],
         expand = True
     )
-    
+
     page.add(layout)
